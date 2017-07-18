@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WebApplication1.Models.Goods>
+
+    @foreach (var item in Model)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) 
+    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+    }
+
+@*@Html.ActionLink("Edit", "Edit",new{ id= Model.)
+@Html.ActionLink("Details", "Details")
+@Html.ActionLink("Delete", "Delete")*@

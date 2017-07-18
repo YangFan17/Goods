@@ -1,0 +1,68 @@
+﻿@using WebApplication1.Models
+
+@model IEnumerable<WebApplication1.Models.Goods>
+
+    <h2>杂货店</h2>
+    <p>
+        
+        <div>
+            @{
+                Html.RenderAction("GetAddNewLink");
+            }
+        </div>
+        @using (Html.BeginForm("Index", "Goods", FormMethod.Get))
+        {
+        <p>
+            类 别: @Html.DropDownList("goodsGenre", "All")
+            名 称: @Html.TextBox("SearchString")
+            <input type="submit" value="查 找" />
+        </p>
+        }
+        </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Genre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Genre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("修改", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("详情", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("删除", "Delete", new { id = item.ID })
+                            
+                           @*@{
+                               Html.RenderAction("GetEditLink");
+                           }*@
+                        </td>
+                    </tr>
+                }
+
+            </table>
